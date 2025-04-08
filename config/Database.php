@@ -1,17 +1,45 @@
 <?php
-
-class Database {
-    // Database Connection
+/* class Database {
     private $conn;
 
-    // Get environment variables
-    private $host = '';
-    private $port = '';
-    private $db_name = '';
-    private $username = '';
-    private $password = '';
+    private $host = "localhost";
+    private $port = "5432";
+    private $db_name = "emr_platform";
+    private $username = "postgres";
+    private $password = "default"; // ← Replace with your actual DB password
+
+    public function connect() {
+        $this->conn = null;
+
+        try {
+            $this->conn = new PDO(
+                "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name}",
+                $this->username,
+                $this->password
+            );
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $e) {
+            echo json_encode(['message' => 'Database Connection Error']);
+            exit();
+        }
+
+        return $this->conn;
+    }
+} */
+
+<?php
+
+class Database {
+    private $conn;
+
+    private $host;
+    private $port;
+    private $db_name;
+    private $username;
+    private $password;
 
     public function __construct() {
+        // Read environment variables
         $this->host = getenv('DATABASE_HOST');
         $this->port = getenv('DATABASE_PORT');
         $this->db_name = getenv('DATABASE_NAME');
@@ -30,6 +58,7 @@ class Database {
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
+            error_log('Database Connection Error: ' . $e->getMessage()); // Logs error in Render logs
             echo json_encode(['message' => 'Database Connection Error']);
             exit();
         }
@@ -37,5 +66,7 @@ class Database {
         return $this->conn;
     }
 }
+
+
 
 ?>
