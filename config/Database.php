@@ -1,12 +1,23 @@
 <?php
+
 class Database {
+    // Database Connection
     private $conn;
 
-    private $host = "localhost";
-    private $port = "5432";
-    private $db_name = "emr_platform";
-    private $username = "postgres";
-    private $password = "default"; // ← Replace with your actual DB password
+    // Get environment variables
+    private $host = '';
+    private $port = '';
+    private $db_name = '';
+    private $username = '';
+    private $password = '';
+
+    public function __construct() {
+        $this->host = getenv('DATABASE_HOST');
+        $this->port = getenv('DATABASE_PORT');
+        $this->db_name = getenv('DATABASE_NAME');
+        $this->username = getenv('DATABASE_USER');
+        $this->password = getenv('DATABASE_PASSWORD');
+    }
 
     public function connect() {
         $this->conn = null;
@@ -18,7 +29,7 @@ class Database {
                 $this->password
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo json_encode(['message' => 'Database Connection Error']);
             exit();
         }
@@ -26,4 +37,5 @@ class Database {
         return $this->conn;
     }
 }
+
 ?>
