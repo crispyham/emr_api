@@ -1,7 +1,5 @@
 
 <?php
-// production php
-
 class Database {
     private $conn;
 
