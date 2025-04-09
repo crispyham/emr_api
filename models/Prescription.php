@@ -106,5 +106,4 @@ class Prescription {
         return $stmt->execute();
     }
 }
-
 ?>

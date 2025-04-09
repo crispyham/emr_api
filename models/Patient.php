@@ -130,5 +130,4 @@ class Patient {
         return $stmt->execute();
     }
 }
-
 ?>

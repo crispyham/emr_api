@@ -88,5 +88,4 @@ class Doctor {
         return $stmt->execute();
     }
 }
-
 ?>

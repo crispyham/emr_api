@@ -103,4 +103,3 @@ class Database {
 }
 // end local php
 */
-?>

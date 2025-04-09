@@ -105,5 +105,4 @@ class Appointment {
         return $stmt->execute();
     }
 }
-
 ?>

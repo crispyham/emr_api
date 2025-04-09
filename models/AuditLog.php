@@ -113,5 +113,4 @@ class AuditLog {
         return $stmt->execute();
     }
 }
-
 ?>
