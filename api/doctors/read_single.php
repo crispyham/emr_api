@@ -1,5 +1,7 @@
 <?php
 // Headers
+// Start output buffering
+ob_start();
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
@@ -38,4 +40,6 @@ if ($num > 0) {
 } else {
     echo json_encode(['message' => 'doctor_id Not Found']);
 }
+// Flush buffer
+ob_end_flush();
 ?>
