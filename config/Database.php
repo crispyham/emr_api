@@ -1,5 +1,7 @@
 
 <?php
+// production php
+
 class Database {
     private $conn;
 
@@ -70,9 +72,10 @@ class Database {
         return $this->conn ?? $this->connect();
     }
 }
+// end prodution php
 
-/* local settings
-
+/*
+// local php
 class Database {
     private $conn;
 
@@ -98,6 +101,8 @@ class Database {
         }
 
         return $this->conn;
-    }*/
-
+    }
+}
+// end local php
+*/
 ?>
